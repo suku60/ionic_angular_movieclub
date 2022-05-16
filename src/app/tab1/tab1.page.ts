@@ -7,17 +7,20 @@ import { TheMovieDBService } from '../projects/api/service/themoviedb.service';
   styleUrls: ['tab1.page.scss']
 })
 export class Tab1Page implements OnInit{
-  modelMovieOrTvShow: "movie";
+  modelMovieOrTvShow = 'movie';
 
-  constructor( private service:  TheMovieDBService ) {}
-
+  constructor ( private service:  TheMovieDBService) {}
+  
   ngOnInit(): void {
+    console.log(this.modelMovieOrTvShow)
     this.SliderContainerInit()
   }
 
   SliderContainerInit() { 
     this.service.getLatestMovies(this.modelMovieOrTvShow).subscribe(LatestMovies =>
-      console.log("response", LatestMovies))
+      
+      console.log("response", LatestMovies)
+      )
 
   }
 
