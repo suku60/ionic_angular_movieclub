@@ -33,18 +33,10 @@ export class Tab1Page implements OnInit {
           overview: latestMovies[1].overview,
           genres: latestMovies[1].genre_ids,
           rating: latestMovies[1].vote_average
-        },
+            })  
+          }
         )
-        
       }
-      
-      )
-    }
-      
-      
-      
-      )
-
+    )
   }
-
 }
