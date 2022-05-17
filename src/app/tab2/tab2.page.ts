@@ -19,7 +19,7 @@ export class Tab2Page implements OnInit {
   }
 
   SliderContainerInit() { 
-    this.service.getNowPlayingTVShows(this.modelMovieOrTvShow).subscribe(LastestTvShowsObj => {
+    this.service.getSearch("movie", "cosas").subscribe(LastestTvShowsObj => {
 
       this.max_shows = Object.entries(LastestTvShowsObj?.results).slice(0,11);
 

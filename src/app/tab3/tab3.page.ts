@@ -9,16 +9,20 @@ import { TheMovieDBService } from '../projects/api/service/themoviedb.service';
 export class Tab3Page {
   searchValue: string;
   movieOrTvShowValue: any;
-  searchResultsArr = [];
+  searchResultsArr: any = [];
   
   constructor(private service: TheMovieDBService) {
     this.searchValue = '';
     this.movieOrTvShowValue = 'movie';
     console.log("b4:", this.searchResultsArr)
   }
+
+  loadSearchContainer();
+
   
   
   loadSearchContainer() {
+    console.log("response?", this.service.getSearch(this.movieOrTvShowValue, this.searchValue))
     this.service.getSearch(this.movieOrTvShowValue, this.searchValue).subscribe(searchResponseObj => {
       searchResponseObj.results.forEach(searchResult => {
         this.searchResultsArr.push({

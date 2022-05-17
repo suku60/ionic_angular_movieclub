@@ -24,4 +24,13 @@
 </ion-header>
 
 <ion-content>
+  <ion-list>
+    <div *ngIf="searchResultsArr.length > 0">
+      <ion-grid fixed=true>
+            <app-card [title]="item.title" [image]="item.image" [model]="item.modelItem" [voterRating]="item.voterRating"
+            (cardEventTrigger)="cardEventListener($event)">
+            </app-card>
+          </ion-col>
+    </div>
+  </ion-list>
 </ion-content>
