@@ -24,4 +24,14 @@
 </ion-header>
 
 <ion-content>
+  <div *ngIf="searchResults.length > 0">
+    <ion-grid>
+      <ion-row>
+        <ion-col *ngFor="let item of searchResults">
+          <app-card [title]="item.title" [image]="item.image" [model]="item.modelItem" [rating]="item.rating">
+            </app-card>
+        </ion-col>
+      </ion-row>
+    </ion-grid>
+  </div>
 </ion-content>
