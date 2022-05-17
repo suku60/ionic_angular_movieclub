@@ -14,8 +14,8 @@ export class Tab1Page implements OnInit {
   constructor ( private service:  TheMovieDBService) {}
   
   ngOnInit(): void {
-    console.log(this.modelMovieOrTvShow)
-    this.SliderContainerInit()
+    // console.log(this.modelMovieOrTvShow)
+    this.SliderContainerInit();
   }
 
   SliderContainerInit() { 
@@ -26,21 +26,21 @@ export class Tab1Page implements OnInit {
 
       this.max_movies = Object.entries(LatestMoviesObj?.results).slice(0,11);
 
-      console.log("max?;", this.max_movies)
+      // console.log("max?;", this.max_movies)
 
       this.max_movies.forEach(latestMovies => {
-        console.log("console log inside mapping", latestMovies[1])
+        // console.log("console log inside mapping", latestMovies[1])
         this.slider.push({
-          modelItem: latestMovies,
-          id: latestMovies.id,
-          title: latestMovies.title,
-          image: latestMovies.backgrop_path,
-          poster: latestMovies.poster_path,
-          overview: latestMovies.overview,
-          genres: latestMovies.genre_ids,
-          rating: latestMovies.vote_average
+          modelItem: latestMovies[1],
+          id: latestMovies[1].id,
+          title: latestMovies[1].title,
+          image: latestMovies[1].backgrop_path,
+          poster: latestMovies[1].poster_path,
+          overview: latestMovies[1].overview,
+          genres: latestMovies[1].genre_ids,
+          rating: latestMovies[1].vote_average
         },
-        console.log("working?", this.slider)
+        // console.log("working?", this.slider)
         )
         
       }
