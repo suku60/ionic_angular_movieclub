@@ -20,9 +20,8 @@ export class Tab1Page implements OnInit{
     this.service.getNowPlayingMovies(this.modelMovieOrTvShow).subscribe(LatestMovies =>
       
       
-      console.log("response", LatestMovies?.results, "maping?", LatestMovies?.results?.map(movies => {
-        console.log("prueba map")
-
+      console.log("response", LatestMovies?.results, "maping?", LatestMovies?.results?.forEach(latestMoviesResult => {
+        console.log(latestMoviesResult.id)
       }))
       )
 
