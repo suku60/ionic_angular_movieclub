@@ -1,7 +1,9 @@
 import { HttpClient } from '@angular/common/http';
 import { Injectable } from '@angular/core';
 import { Observable } from 'rxjs';
+import { ModalController } from '@ionic/angular';
 import { environment } from 'src/environments/environment.prod';
+import { ModelPageComponent } from '../../component/model-page/model-page.component';
 
 const api_key = environment.api_key
 
@@ -11,7 +13,7 @@ const api_key = environment.api_key
 
 export class TheMovieDBService {
 
-  constructor(private http: HttpClient) { 
+  constructor(private http: HttpClient, public modalController: ModalController) { 
 
   }
 
@@ -36,8 +38,19 @@ export class TheMovieDBService {
     return this.http.get(callURL);
   }
 
-  getSearch(search: string): Observable<any> {
-    const callURL = `https://api.themoviedb.org/3/search/company?api_key=${api_key}&query=${search}&page=1`;
+  getSearch(movieOrTvShow: string, search: string): Observable<any> {
+    const callURL = `https://api.themoviedb.org/3/search/${movieOrTvShow}?api_key=${api_key}&query=${search}&page=1`;
     return this.http.get(callURL);
+  }
+
+  async presentModal(movieOrTvShow) {
+    const modal = await this.modalController.create({
+      component: ModelPageComponent,
+      componentProps: {
+        modelMovieOrTvShow: movieOrTvShow
+      }
+
+    });
+    return await modal.present();
   }
 }

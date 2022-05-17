@@ -8,12 +8,12 @@ import { TheMovieDBService } from '../projects/api/service/themoviedb.service';
 })
 export class Tab3Page implements OnInit {
   search = '';
+  modelMovieOrTvShow = '';
   search_response = [];
 
   constructor ( private service:  TheMovieDBService) {}
   
   ngOnInit(): void {
-    // console.log(this.modelMovieOrTvShow)
     this.SliderContainerInit();
   }
 
