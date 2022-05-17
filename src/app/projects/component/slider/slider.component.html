@@ -1,9 +1,9 @@
 <ion-slides class="box_slider" pager="true" [options]="sliderOptions">
-  <ion-slide *ngFor="let item of sliderInput" (click)="sliderClickTrigger(slider.modelItem)">
-    <img src="{{item.image}}">
-    <h3>{{item.title}}</h3>
-    <p>{{item.overview}}</p>
-    <p>{{item.id}}</p>
-    <p>{{item.rating}}</p>
+  <ion-slide class="box_slider_item" *ngFor="let item of sliderInput" (click)="sliderClickTrigger(slider.modelItem)">
+    <img class="slider_img img_vertical" src="https://image.tmdb.org/t/p/w500{{item.poster}}">
+    <img class="slider_img img_horizontal" src="https://image.tmdb.org/t/p/w500{{item.image}}">
+    <!-- <h3 class="slider_data data_title">{{item.title}}</h3> -->
+    <p class="slider_data data_overview">{{item.overview}}</p>
+    <!-- <p class="slider_data data_rating">{{item.rating}}</p> -->
   </ion-slide>
 </ion-slides>
