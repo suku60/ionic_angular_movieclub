@@ -1,7 +1,7 @@
 <ion-header [translucent]="true">
   <ion-toolbar>
     <ion-buttons class="ion-margin-start" slot="start">
-      <ion-icon class="jm-ion-icon" name="search-circle-outline"></ion-icon>
+      <ion-icon name="search-circle-outline"></ion-icon>
     </ion-buttons>
     <ion-title>
       Search
@@ -9,5 +9,19 @@
   </ion-toolbar>
 </ion-header>
 
-<ion-content [fullscreen]="true">
+<ion-header class="ion-margin-top">
+  <ion-toolbar>
+    <ion-searchbar style="font-size: 24px;" placeholder="What would you like to watch?" [(ngModel)]="searchValue">
+    </ion-searchbar>
+    <ion-item>
+      <ion-label class="ion-margin-start">Movies or TV Shows?</ion-label>
+      <ion-select placeholder="Select Filter Type" [(ngModel)]="selectedValue" (ionChange)=selectionChanged()>
+        <ion-select-option value="movie">Movies</ion-select-option>
+        <ion-select-option value="tv">TV Shows</ion-select-option>
+      </ion-select>
+    </ion-item>
+  </ion-toolbar>
+</ion-header>
+
+<ion-content>
 </ion-content>
