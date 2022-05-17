@@ -28,7 +28,7 @@
     <ion-grid>
       <ion-row>
         <ion-col *ngFor="let item of searchResults">
-          <app-card [title]="item.title" [image]="item.image" [model]="item.modelItem" [rating]="item.rating">
+          <app-card [title]="item.title" [image]="item.image" [model]="item.modelItem" [rating]="item.rating" (cardEvent)="loadSearchContainer($event)">
             </app-card>
         </ion-col>
       </ion-row>

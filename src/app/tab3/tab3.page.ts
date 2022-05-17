@@ -11,6 +11,7 @@ export class Tab3Page {
   movieOrTvShowValue: string;
   searchResultsRaw = [];
   searchResults = [];
+  temporaryData: any;
   
   constructor(private service: TheMovieDBService) {
     this.searchValue = '';
@@ -28,6 +29,11 @@ export class Tab3Page {
   selectionChanged() {
     this.searchResults = [];
     this.searchValue = '';
+  }
+
+  startLoadingData(event) {
+    this.temporaryData = event;
+    this.loadSearchContainer();
   }
 
   loadSearchContainer() {

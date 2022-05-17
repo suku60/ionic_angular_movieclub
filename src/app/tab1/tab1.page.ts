@@ -1,4 +1,5 @@
 import { Component, OnInit } from '@angular/core';
+import { environment } from "../../environments/environment.prod"
 import { TheMovieDBService } from '../projects/api/service/themoviedb.service';
 
 @Component({
@@ -28,8 +29,8 @@ export class Tab1Page implements OnInit {
           modelItem: latestMovies[1],
           id: latestMovies[1].id,
           title: latestMovies[1].title,
-          image: latestMovies[1].backdrop_path,
-          poster: latestMovies[1].poster_path,
+          image: environment.path_img+latestMovies[1].backdrop_path,
+          poster: environment.path_img+latestMovies[1].poster_path,
           overview: latestMovies[1].overview,
           genres: latestMovies[1].genre_ids,
           rating: latestMovies[1].vote_average
