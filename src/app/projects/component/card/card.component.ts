@@ -8,9 +8,7 @@ import { Component, EventEmitter, Input, OnInit, Output } from '@angular/core';
 
 export class CardComponent implements OnInit {
   @Input() title: string;
-  @Input() overview: string;
   @Input() poster: string;
-  @Input() rating: string;
   @Input() model: any;
   @Output() cardEvent: EventEmitter<any> = new EventEmitter();
 
@@ -18,8 +16,8 @@ export class CardComponent implements OnInit {
 
   ngOnInit() {}
 
-  cardClickTrigger(model) {
-    this.cardEvent.emit(model);
+  cardClick(modelValue) {
+    this.cardEvent.emit(modelValue);
   }
 
 }

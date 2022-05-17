@@ -42,7 +42,6 @@ export class Tab3Page {
       this.searchResultsRaw = Object.entries(LastestTvShowsObj?.results).slice(0,11);
 
       this.searchResultsRaw.forEach(searchResultsMap => {
-        console.log("workingg?", "movieorserie", this.movieOrTvShowValue, searchResultsMap[1].title || searchResultsMap[1].name)
         this.searchResults.push({
           modelItem: searchResultsMap[1],
           id: searchResultsMap[1].id,
@@ -52,7 +51,8 @@ export class Tab3Page {
           overview: searchResultsMap[1].overview,
           genres: searchResultsMap[1].genre_ids,
           rating: searchResultsMap[1].vote_average
-            })  
+        })  
+        console.log("workingg?", "movieorserie", searchResultsMap[1]?.id)
           }
         )
 
