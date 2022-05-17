@@ -26,6 +26,11 @@ export class TheMovieDBService {
     return this.http.get(callURL);
   }
 
+  getNowPlayingTVShows(movieOrTvShow: string): Observable<any> {
+    const callURL = `https://api.themoviedb.org/3/${movieOrTvShow}/on_the_air?api_key=${api_key}&language=en-US&page=1`;
+    return this.http.get(callURL);
+  }
+
   getTopRatedMovies(movieOrTvShow: string, page: number): Observable<any> {
     const callURL = `https://api.themoviedb.org/3/${movieOrTvShow}/top_rated?api_key=${api_key}&language=en-US&page=${page}`;
     return this.http.get(callURL);

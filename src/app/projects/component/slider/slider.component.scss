@@ -1,0 +1,28 @@
+.box_slider {
+    background-color: hsl(180, 25%, 5%);
+
+    width: 90%;
+    height: 100%;
+
+    
+    display: flex;
+    flex-direction: column;
+    justify-content: center;
+    align-items: center;
+}
+
+// .swiper-pagination-bullet > .swiper-pagination-bullet { 
+//     background-color: white;
+// }
+
+// .swiper-pagination-bullet-active {
+//     background-color: black;
+// }
+
+
+
+@media only screen and (max-width: 600px) {
+    .box_slider {
+        width: 97%;
+    }
+}
