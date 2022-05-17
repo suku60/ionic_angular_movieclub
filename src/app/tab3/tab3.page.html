@@ -9,13 +9,13 @@
   </ion-toolbar>
 </ion-header>
 
-<ion-header class="ion-margin-top">
+<ion-header>
   <ion-toolbar>
-    <ion-searchbar style="font-size: 24px;" placeholder="What would you like to watch?" [(ngModel)]="searchValue">
+    <ion-searchbar style="font-size: 24px;" placeholder="What would you like to watch?" [(ngModel)]="searchValue" (ionChange)="searchLoader()">
     </ion-searchbar>
     <ion-item>
       <ion-label class="ion-margin-start">Movies or TV Shows?</ion-label>
-      <ion-select placeholder="Select Filter Type" [(ngModel)]="selectedValue" (ionChange)=selectionChanged()>
+      <ion-select placeholder="Select Filter Type" [(ngModel)]="movieOrTvShowValue" (ionChange)=selectionChanged()>
         <ion-select-option value="movie">Movies</ion-select-option>
         <ion-select-option value="tv">TV Shows</ion-select-option>
       </ion-select>
@@ -24,13 +24,4 @@
 </ion-header>
 
 <ion-content>
-  <ion-list>
-    <div *ngIf="searchResultsArr.length > 0">
-      <ion-grid fixed=true>
-            <app-card [title]="item.title" [image]="item.image" [model]="item.modelItem" [voterRating]="item.voterRating"
-            (cardEventTrigger)="cardEventListener($event)">
-            </app-card>
-          </ion-col>
-    </div>
-  </ion-list>
 </ion-content>

@@ -8,7 +8,7 @@ import { TheMovieDBService } from '../projects/api/service/themoviedb.service';
 })
 export class Tab2Page implements OnInit {
   modelMovieOrTvShow = 'tv';
-  max_shows = [];
+  sliderRaw = [];
   slider = [];
 
   constructor ( private service:  TheMovieDBService) {}
@@ -19,11 +19,11 @@ export class Tab2Page implements OnInit {
   }
 
   SliderContainerInit() { 
-    this.service.getSearch("movie", "cosas").subscribe(LastestTvShowsObj => {
+    this.service.getNowPlayingTVShows(this.modelMovieOrTvShow).subscribe(LastestTvShowsObj => {
 
-      this.max_shows = Object.entries(LastestTvShowsObj?.results).slice(0,11);
+      this.sliderRaw = Object.entries(LastestTvShowsObj?.results).slice(0,11);
 
-      this.max_shows.forEach(latestTvShows => {
+      this.sliderRaw.forEach(latestTvShows => {
 
         this.slider.push({
           modelItem: latestTvShows[1],

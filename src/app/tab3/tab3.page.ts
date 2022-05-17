@@ -1,4 +1,4 @@
-import { Component  } from '@angular/core';
+import { Component, OnInit  } from '@angular/core';
 import { TheMovieDBService } from '../projects/api/service/themoviedb.service';
 
 @Component({
@@ -8,33 +8,48 @@ import { TheMovieDBService } from '../projects/api/service/themoviedb.service';
 })
 export class Tab3Page {
   searchValue: string;
-  movieOrTvShowValue: any;
-  searchResultsArr: any = [];
+  movieOrTvShowValue: string;
+  searchResultsRaw = [];
+  searchResults = [];
   
   constructor(private service: TheMovieDBService) {
     this.searchValue = '';
-    this.movieOrTvShowValue = 'movie';
-    console.log("b4:", this.searchResultsArr)
+    this.movieOrTvShowValue = 'tv';
   }
 
-  loadSearchContainer();
+  searchLoader() {
+    this.searchResults = [];
 
-  
-  
+    if (this.searchValue.length > 2) {
+      this.loadSearchContainer();
+    }
+  }
+
+  selectionChanged() {
+    this.searchResults = [];
+    this.searchValue = '';
+  }
+
   loadSearchContainer() {
-    console.log("response?", this.service.getSearch(this.movieOrTvShowValue, this.searchValue))
-    this.service.getSearch(this.movieOrTvShowValue, this.searchValue).subscribe(searchResponseObj => {
-      searchResponseObj.results.forEach(searchResult => {
-        this.searchResultsArr.push({
-          modelItem: searchResult,
-          id: searchResult.id,
-          title: this.movieOrTvShowValue === 'movie' ? searchResult.title : searchResult.name,
-          overview: searchResult.overview,
-          image: searchResult.poster_path,
-          rating: searchResult.vote_average
-        });
-        console.log("after:", this.searchResultsArr)
-      });
+    this.service.getSearch(this.movieOrTvShowValue, this.searchValue).subscribe(LastestTvShowsObj => {
+
+      this.searchResultsRaw = Object.entries(LastestTvShowsObj?.results).slice(0,11);
+
+      this.searchResultsRaw.forEach(searchResultsMap => {
+        console.log("workingg?", "movieorserie", this.movieOrTvShowValue, searchResultsMap[1].title || searchResultsMap[1].name)
+        this.searchResults.push({
+          modelItem: searchResultsMap[1],
+          id: searchResultsMap[1].id,
+          title: searchResultsMap[1].title || searchResultsMap[1].name,
+          image: searchResultsMap[1].backdrop_path,
+          poster: searchResultsMap[1].poster_path,
+          overview: searchResultsMap[1].overview,
+          genres: searchResultsMap[1].genre_ids,
+          rating: searchResultsMap[1].vote_average
+            })  
+          }
+        )
+
     });
   }
 
