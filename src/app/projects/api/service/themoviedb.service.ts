@@ -16,9 +16,13 @@ export class TheMovieDBService {
   }
 
   getLatestMovies(movieOrTvShow: string): Observable<any> {
-    console.log("??", movieOrTvShow)
     const callURL = `https://api.themoviedb.org/3/${movieOrTvShow}/latest?api_key=${api_key}&language=en-US`;
-    console.log("first call", callURL)
+    return this.http.get(callURL);
+  }
+
+  getNowPlayingMovies(movieOrTvShow: string): Observable<any> {
+    // we will display these movies in our slider, since there's no clear objective yet in the app.
+    const callURL = `https://api.themoviedb.org/3/${movieOrTvShow}/now_playing?api_key=${api_key}&language=en-US&page=1`;
     return this.http.get(callURL);
   }
 

@@ -17,9 +17,13 @@ export class Tab1Page implements OnInit{
   }
 
   SliderContainerInit() { 
-    this.service.getLatestMovies(this.modelMovieOrTvShow).subscribe(LatestMovies =>
+    this.service.getNowPlayingMovies(this.modelMovieOrTvShow).subscribe(LatestMovies =>
       
-      console.log("response", LatestMovies)
+      
+      console.log("response", LatestMovies?.results, "maping?", LatestMovies?.results?.map(movies => {
+        console.log("prueba map")
+
+      }))
       )
 
   }
