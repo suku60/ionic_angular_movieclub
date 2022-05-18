@@ -73,6 +73,7 @@
 
   position: absolute;
   left: 0%;
+  padding-top: 1%;
 
   height: 4rem;
   width: 100%;
@@ -138,6 +139,16 @@
   flex-direction: column;
   justify-content: center;
   align-items: center;
+}
+
+.img {
+  
+  display: flex;
+}
+
+.img_poster {
+  
+  display: none;
 }
 
 @media only screen and (max-width: 1600px) {
@@ -219,7 +230,17 @@
     border-top: solid hsl(0, 0%, 96%, .5) .1em;
     background: linear-gradient(0deg, transparent, #1a1a1a, #1a1a1a);
 
-    height: 7rem;
+    height: 8rem;
+  }
+
+  .img {
+  
+    display: none;
+  }
+  
+  .img_poster {
+    
+    display: flex;
   }
 
 

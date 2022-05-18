@@ -29,15 +29,16 @@
           <div class="results_card" *ngFor="let item of searchResults">
             <div class="result_data">
               <div class="details_container">
-                <div class="details_btn">
+                <button type="button" class="details_btn" id="{{item.id}}" (click)="selectMovieOrTvShow(item.id)">
                   Details
-                </div>
+                </button>
                 <div class="details_title">
                   {{item.name || item.title}} 
                 </div>
               </div>
               <div class="img_container">
-                <img class="img" src="{{item.poster}}"/>
+                <img class="img" src="{{item.image}}"/>
+                <img class="img_poster" src="{{item.poster}}"/>
               </div>
             </div>
           </div>

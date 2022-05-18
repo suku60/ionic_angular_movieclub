@@ -1,4 +1,4 @@
-import { Component, OnInit  } from '@angular/core';
+import { Component } from '@angular/core';
 import { environment } from 'src/environments/environment.prod';
 import { TheMovieDBService } from '../projects/api/service/themoviedb.service';
 
@@ -9,9 +9,12 @@ import { TheMovieDBService } from '../projects/api/service/themoviedb.service';
 })
 export class Tab3Page {
   searchValue: string;
+  idDetails: string;
   movieOrTvShowValue: string;
   searchResultsRaw = [];
   searchResults = [];
+  searchDetailsRaw = [];
+  searchDetails = [];
   temporaryData: any;
   
   constructor(private service: TheMovieDBService) {
@@ -19,9 +22,6 @@ export class Tab3Page {
     this.movieOrTvShowValue = 'tv';
   }
 
-  ngOnInit(): void {
-    this.loadSearchContainer();
-  }
   searchLoader() {
     this.searchResults = [];
 
@@ -40,8 +40,13 @@ export class Tab3Page {
     this.loadSearchContainer();
   }
 
+  selectMovieOrTvShow(id) {
+    this.idDetails = id;
+    console.log(this.idDetails, id)
+  }
+
   loadSearchContainer() {
-    this.service.getSearch(this.movieOrTvShowValue, "pokemon").subscribe(LastestTvShowsObj => {
+    this.service.getSearch(this.movieOrTvShowValue, this.searchValue).subscribe(LastestTvShowsObj => {
 
       this.searchResultsRaw = Object.entries(LastestTvShowsObj?.results).slice(0,11);
 
@@ -56,7 +61,31 @@ export class Tab3Page {
           genres: searchResultsMap[1].genre_ids,
           rating: searchResultsMap[1].vote_average
         })  
-        console.log("workingg?", "movieorserie", searchResultsMap[1]?.id)
+        // console.log("workingg?", "movieorserie", searchResultsMap[1]?.id)
+          }
+        )
+
+    });
+  }
+
+  loadDetails() {
+    console.log("details charging")
+    this.service.getDetails(this.movieOrTvShowValue, this.idDetails).subscribe(LastestTvShowsObj => {
+
+      this.searchDetailsRaw = Object.entries(LastestTvShowsObj?.results).slice(0,11);
+
+      this.searchDetailsRaw.forEach(searchDetailMap => {
+        this.searchDetails.push({
+          modelItem: searchDetailMap[1],
+          id: searchDetailMap[1].id,
+          title: searchDetailMap[1].title || searchDetailMap[1].name,
+          image: environment.path_img+searchDetailMap[1].backdrop_path,
+          poster: environment.path_img+searchDetailMap[1].poster_path,
+          overview: searchDetailMap[1].overview,
+          genres: searchDetailMap[1].genre_ids,
+          rating: searchDetailMap[1].vote_average
+        })  
+        // console.log("workingg?", "movieorserie", searchResultsMap[1]?.id)
           }
         )
 
