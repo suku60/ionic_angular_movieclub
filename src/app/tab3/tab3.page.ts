@@ -23,9 +23,7 @@ export class Tab3Page {
   }
 
   ngOnInit() {
-    this.loadSearchContainer();
     this.searchDetails = []
-    console.log(this.searchDetails)
 
   }
 
@@ -55,7 +53,7 @@ export class Tab3Page {
   }
 
   loadSearchContainer() {
-    this.service.getSearch(this.movieOrTvShowValue, "pokemon").subscribe(LastestTvShowsObj => {
+    this.service.getSearch(this.movieOrTvShowValue, this.searchValue).subscribe(LastestTvShowsObj => {
 
       this.searchResultsRaw = Object.entries(LastestTvShowsObj?.results).slice(0,11);
 
@@ -70,7 +68,20 @@ export class Tab3Page {
           genres: searchResultsMap[1].genre_ids,
           rating: searchResultsMap[1].vote_average
         })  
-        // console.log("workingg?", "movieorserie", searchResultsMap[1]?.id)
+
+        if(searchResultsMap[1].backdrop_path === null){
+          this.searchResults.push({
+            image: environment.null_img_path
+          })
+        }
+        
+        console.log("seguimos?")
+
+        if(searchResultsMap[1].poster_path === null){
+          this.searchResults.push({
+            poster: environment.null_img_path
+          })
+        }
           }
         )
 
