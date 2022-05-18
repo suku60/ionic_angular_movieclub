@@ -1,4 +1,5 @@
 import { Component, OnInit  } from '@angular/core';
+import { environment } from 'src/environments/environment.prod';
 import { TheMovieDBService } from '../projects/api/service/themoviedb.service';
 
 @Component({
@@ -18,6 +19,9 @@ export class Tab3Page {
     this.movieOrTvShowValue = 'tv';
   }
 
+  ngOnInit(): void {
+    this.loadSearchContainer();
+  }
   searchLoader() {
     this.searchResults = [];
 
@@ -37,7 +41,7 @@ export class Tab3Page {
   }
 
   loadSearchContainer() {
-    this.service.getSearch(this.movieOrTvShowValue, this.searchValue).subscribe(LastestTvShowsObj => {
+    this.service.getSearch(this.movieOrTvShowValue, "pokemon").subscribe(LastestTvShowsObj => {
 
       this.searchResultsRaw = Object.entries(LastestTvShowsObj?.results).slice(0,11);
 
@@ -46,8 +50,8 @@ export class Tab3Page {
           modelItem: searchResultsMap[1],
           id: searchResultsMap[1].id,
           title: searchResultsMap[1].title || searchResultsMap[1].name,
-          image: searchResultsMap[1].backdrop_path,
-          poster: searchResultsMap[1].poster_path,
+          image: environment.path_img+searchResultsMap[1].backdrop_path,
+          poster: environment.path_img+searchResultsMap[1].poster_path,
           overview: searchResultsMap[1].overview,
           genres: searchResultsMap[1].genre_ids,
           rating: searchResultsMap[1].vote_average

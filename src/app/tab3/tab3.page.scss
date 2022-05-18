@@ -1,1 +1,39 @@
 @import url(../app.component.scss);
+
+.results_container {
+  height: 100vh;  
+
+  display: flex;
+  flex-direction: column;
+  justify-content: flex-start;
+  align-items: center;
+
+  padding-inline: 5%;
+}
+
+.results_data {
+  box-sizing: border-box;
+
+  max-height: 10%;
+
+  display: flex;
+  flex-direction: column;
+  justify-content: center;
+  align-items: center;
+  
+}
+
+.img_container {
+
+  height: 6em;
+  border-radius: .3em;
+
+  overflow: hidden;
+  display: flex;
+  flex-direction: column;
+  justify-content: center;
+  align-items: center;
+}
+
+
+

@@ -23,15 +23,19 @@
   </ion-toolbar>
 </ion-header>
 
-<ion-content>
-  <div>
-    <ion-grid>
-      <ion-row>
-        <ion-col *ngFor="let item of searchResults">
-          <app-card [title]="item.title" [poster]="item.image" [model]="modelItem" (cardEvent)="loadSearchContainer($event)">
-            </app-card>
-        </ion-col>
-      </ion-row>
-    </ion-grid>
-  </div>
+<ion-content [fullscreen]="true">
+    <div *ngIf="searchResults.length > 0">
+        <div class="results_container">
+          <ion-row *ngFor="let item of searchResults">
+            <div class="result_data">
+              <div class="details_container"></div>
+              details
+              {{item.name || item.title}} 
+              <div class="img_container">
+                <img class="img" src="{{item.poster}}"/>
+              </div>
+            </div>
+          </ion-row>
+        </div> 
+    </div>
 </ion-content>

@@ -14,7 +14,7 @@ export class SliderComponent implements OnInit {
 
   ngOnInit() {}
 
-  sliderClickTrigger(modelValue) {
+  sliderClick(modelValue) {
     this.sliderEvent.emit(modelValue);
     // console.log("working?")
 
