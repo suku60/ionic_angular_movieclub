@@ -1,5 +1,5 @@
 <ion-slides class="box_slider" pager="true" [options]="sliderOptions">
-  <ion-slide class="box_slider_item" *ngFor="let item of sliderInput" (click)="sliderClickTrigger(slider.modelItem)">
+  <ion-slide class="box_slider_item" *ngFor="let item of sliderInput">
     <img class="slider_img img_vertical" src="{{item.poster}}">
     <img class="slider_img img_horizontal" src="{{item.image}}">
     <div class="slider_item_data">

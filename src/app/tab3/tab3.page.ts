@@ -1,4 +1,4 @@
-import { Component } from '@angular/core';
+import { Component, OnInit } from '@angular/core';
 import { environment } from 'src/environments/environment.prod';
 import { TheMovieDBService } from '../projects/api/service/themoviedb.service';
 
@@ -9,7 +9,7 @@ import { TheMovieDBService } from '../projects/api/service/themoviedb.service';
 })
 export class Tab3Page {
   searchValue: string;
-  idDetails: string;
+  idDetails: any;
   movieOrTvShowValue: string;
   searchResultsRaw = [];
   searchResults = [];
@@ -20,6 +20,13 @@ export class Tab3Page {
   constructor(private service: TheMovieDBService) {
     this.searchValue = '';
     this.movieOrTvShowValue = 'tv';
+  }
+
+  ngOnInit() {
+    this.loadSearchContainer();
+    this.searchDetails = []
+    console.log(this.searchDetails)
+
   }
 
   searchLoader() {
@@ -33,6 +40,7 @@ export class Tab3Page {
   selectionChanged() {
     this.searchResults = [];
     this.searchValue = '';
+    this.searchDetails = [];
   }
 
   startLoadingData(event) {
@@ -42,11 +50,12 @@ export class Tab3Page {
 
   selectMovieOrTvShow(id) {
     this.idDetails = id;
-    console.log(this.idDetails, id)
+    console.log(this.idDetails)
+    this.loadDetails(this.idDetails)
   }
 
   loadSearchContainer() {
-    this.service.getSearch(this.movieOrTvShowValue, this.searchValue).subscribe(LastestTvShowsObj => {
+    this.service.getSearch(this.movieOrTvShowValue, "pokemon").subscribe(LastestTvShowsObj => {
 
       this.searchResultsRaw = Object.entries(LastestTvShowsObj?.results).slice(0,11);
 
@@ -68,26 +77,15 @@ export class Tab3Page {
     });
   }
 
-  loadDetails() {
-    console.log("details charging")
-    this.service.getDetails(this.movieOrTvShowValue, this.idDetails).subscribe(LastestTvShowsObj => {
+  loadDetails(id) {
+    console.log("details charging", this.searchDetails, "?????")
+    this.service.getDetails(this.movieOrTvShowValue, id).subscribe(searchDetailObj => {
 
-      this.searchDetailsRaw = Object.entries(LastestTvShowsObj?.results).slice(0,11);
+      console.log("as", typeof(searchDetailObj) ,searchDetailObj.adult, searchDetailObj.id)
+      
+      this.searchDetails = searchDetailObj;
 
-      this.searchDetailsRaw.forEach(searchDetailMap => {
-        this.searchDetails.push({
-          modelItem: searchDetailMap[1],
-          id: searchDetailMap[1].id,
-          title: searchDetailMap[1].title || searchDetailMap[1].name,
-          image: environment.path_img+searchDetailMap[1].backdrop_path,
-          poster: environment.path_img+searchDetailMap[1].poster_path,
-          overview: searchDetailMap[1].overview,
-          genres: searchDetailMap[1].genre_ids,
-          rating: searchDetailMap[1].vote_average
-        })  
-        // console.log("workingg?", "movieorserie", searchResultsMap[1]?.id)
-          }
-        )
+      console.log("sasdasd", this.searchDetails)
 
     });
   }

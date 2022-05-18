@@ -44,4 +44,15 @@
           </div>
         </div> 
     </div>
+
+    <div *ngIf="searchDetails.length !== 0" class="card_container">
+      <div class="card_title">
+        {{searchDetails.title || searchDetails.name}}
+      </div>
+      <div class="card_images" *ngIf="searchDetails">
+        <img class="img card_img" src="https://image.tmdb.org/t/p/w500{{searchDetails.backdrop_path}}"/>
+        <img class="img_poster card_poster" src="https://image.tmdb.org/t/p/w500{{searchDetails.poster_path}}"/>
+      </div>
+      
+   </div>
 </ion-content>
