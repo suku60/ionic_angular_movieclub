@@ -26,16 +26,21 @@
 <ion-content [fullscreen]="true">
     <div *ngIf="searchResults.length > 0">
         <div class="results_container">
-          <ion-row *ngFor="let item of searchResults">
+          <div *ngFor="let item of searchResults">
             <div class="result_data">
-              <div class="details_container"></div>
-              details
-              {{item.name || item.title}} 
+              <div class="details_container">
+                <div class="details_btn">
+                  Details
+                </div>
+                <div class="details_title">
+                  {{item.name || item.title}} 
+                </div>
+              </div>
               <div class="img_container">
                 <img class="img" src="{{item.poster}}"/>
               </div>
             </div>
-          </ion-row>
+          </div>
         </div> 
     </div>
 </ion-content>
