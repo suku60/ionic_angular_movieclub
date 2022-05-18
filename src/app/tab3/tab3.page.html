@@ -11,7 +11,8 @@
 
 <ion-header>
   <ion-toolbar>
-    <ion-searchbar style="font-size: 24px;" placeholder="What would you like to watch?" [(ngModel)]="searchValue" (ionChange)="searchLoader()">
+    <ion-searchbar style="font-size: 24px;" placeholder="What would you like to watch?" [(ngModel)]="searchValue"
+      (ionChange)="searchLoader()">
     </ion-searchbar>
     <ion-item>
       <ion-label class="ion-margin-start">Movies or TV Shows?</ion-label>
@@ -23,36 +24,60 @@
   </ion-toolbar>
 </ion-header>
 
-<ion-content [fullscreen]="true">
-    <div *ngIf="searchResults.length > 0">
-        <div class="results_container">
-          <div class="results_card" *ngFor="let item of searchResults">
-            <div class="result_data">
-              <div class="details_container">
-                <button type="button" class="details_btn" id="{{item.id}}" (click)="selectMovieOrTvShow(item.id)">
-                  Details
-                </button>
-                <div class="details_title">
-                  {{item.name || item.title}} 
-                </div>
-              </div>
-              <div class="img_container">
-                <img class="img" src="{{item.image}}"/>
-                <img class="img_poster" src="{{item.poster}}"/>
-              </div>
-            </div>
-          </div>
-        </div> 
-    </div>
-
-    <div *ngIf="searchDetails.length !== 0" class="card_container">
-      <div class="card_title">
+  <div *ngIf="searchDetails.length !== 0" [hidden]="!searchDetails" class="card_container" id="animCard">
+    <button class="card_close_btn">
+      <ion-icon (click)="clearDetails()" name="close-circle"></ion-icon>
+    </button>
+    <div class="card_data">
+      <div class="card_data_title">
         {{searchDetails.title || searchDetails.name}}
       </div>
-      <div class="card_images" *ngIf="searchDetails">
-        <img class="img card_img" src="https://image.tmdb.org/t/p/w500{{searchDetails.backdrop_path}}"/>
-        <img class="img_poster card_poster" src="https://image.tmdb.org/t/p/w500{{searchDetails.poster_path}}"/>
+      <div class="card_data_overview">
+        {{searchDetails?.overview}}
       </div>
-      
-   </div>
+      <div class="card_data_rest">
+        <p>
+          rating: {{searchDetails.vote_average}}
+        </p>
+        <p>        
+          year: {{searchDetails.first_air_date}} 
+         </p>
+        <p>        
+          seasons: {{searchDetails.number_of_seasons}} 
+        </p>
+        <p>        
+          total episodes: {{searchDetails.number_of_episodes}} 
+        </p>
+        
+      </div>
+    </div>
+    <div class="card_images" *ngIf="searchDetails">
+      <img class="img card_img" src="https://image.tmdb.org/t/p/w500{{searchDetails.backdrop_path}}" />
+      <img class="img_poster card_poster" src="https://image.tmdb.org/t/p/w500{{searchDetails.poster_path}}" />
+    </div>
+    <div class="card_shadow_effect">
+    </div>
+  </div>
+
+<ion-content [fullscreen]="true">
+  <div *ngIf="searchResults.length > 0">
+    <div class="results_container">
+      <div class="results_card" *ngFor="let item of searchResults">
+        <div class="result_data">
+          <div class="details_container">
+            <button type="button" class="details_btn" id="{{item.id}}" (click)="selectMovieOrTvShow(item.id)">
+              Details
+            </button>
+            <div class="details_title">
+              {{item.name || item.title}}
+            </div>
+          </div>
+          <div class="img_container">
+            <img class="img" src="{{item.image}}" />
+            <img class="img_poster" src="{{item.poster}}" />
+          </div>
+        </div>
+      </div>
+    </div>
+  </div>
 </ion-content>

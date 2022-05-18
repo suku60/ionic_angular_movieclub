@@ -14,7 +14,7 @@ export class Tab3Page {
   searchResultsRaw = [];
   searchResults = [];
   searchDetailsRaw = [];
-  searchDetails = [];
+  searchDetails: any;
   temporaryData: any;
   
   constructor(private service: TheMovieDBService) {
@@ -88,6 +88,13 @@ export class Tab3Page {
       console.log("sasdasd", this.searchDetails)
 
     });
+  }
+
+  clearDetails(){
+    this.searchDetails = 0;
+    console.log("sasdasd", this.searchDetails)
+
+
   }
 
 }
