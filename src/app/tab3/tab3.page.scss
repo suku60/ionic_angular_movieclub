@@ -220,7 +220,6 @@
 
 }
 
-
 .card_data {
   background: linear-gradient(65deg, transparent, transparent, transparent, hsl(0, 0%, 10%, .9), #1a1a1a,  #1a1a1a, transparent);
 
@@ -336,6 +335,7 @@
   z-index: 6;
 }
 
+// ADAPTIVE DESIGN
 
 @media only screen and (max-width: 1600px) {
 
